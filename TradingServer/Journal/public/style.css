@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-name {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.panel img {
+  display: block;
+  border: 2px solid #333;
+  max-width: 45vw;
+  height: auto;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+.controls button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-container input[type="text"],
+.search-container input[type="date"] {
+  padding: 8px;
+  width: 200px;
+  font-size: 16px;
+  margin-right: 8px;
+}

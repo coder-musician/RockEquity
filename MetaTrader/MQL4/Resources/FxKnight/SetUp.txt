@@ -1,0 +1,118 @@
+  
+  
+-------------------------------------------
+
+              fxKnight.com
+
+Custom Indicators & Chart Templates for MT4
+-------------------------------------------
+  
+  
+1)  Exit MetaTrader (if running)
+
+  
+2)  Launch Windows Filer Explorer or double-click on My Computer
+    and click on the Folders button on your toolbar
+  
+
+3)  Hold down your CTRL key and left-click to select both the "expects" and "templates" folders
+    which came as part of this Zip package and drag them into your broker's folder in C:\Program Files\
+    (when asked whether to overwrite, select "Yes to All")
+  
+
+4)  Re-start MetaTrader
+  
+
+5)  Right-click in an empty area of any chart and load any of the following templates:
+
+       fxKnight GMT     - Used the majority of the time, except when NY is trading alone
+       fxKnight EST     - Used after London close, from 12:00 - 17:00 EST
+       fxKnight EST5    - Used when NY recalculates their pivots at 17:00 EST, until Asian open
+       fxKnight Futures - Used for trading index futures and commodities (24 hrs)
+       fxKnight Gold    - Used for trading gold, and other precious metals subject to the London fix
+
+
+6)  The pivot point settings on your templates are configured for GMT-based brokers by default.
+    To find your broker's GMT offset, compare the right-most time stamp on your M1 chart with
+    http://wwp.greenwichmeantime.com/ - then add or subtract your offset to the following values:
+
+       April - September:         October - March:
+
+       fxKnight GMT     - 0       fxKnight GMT     - 0
+       fxKnight EST     - 4       fxKnight EST     - 5
+       fxKnight EST5    - 21      fxKnight EST5    - 22
+       fxKnight Futures - 21      fxKnight Futures - 22
+       fxKnight Gold    - 14      fxKnight Gold    - 15
+
+    To adjust your pivot settings, right-click on a Daily Pivot line and select Properties, then
+    go to the Inputs tab and double-click next to StartHour.  Repeat this procedure for the Daily
+    Medians and re-save your template so that you can have the new settings on each new chart.
+    We recommend saving two versions of each template, one for summer and one for winter.
+
+
+7)  To configure your Fibs, please see Fibs.PDF (included).  Below are the latest settings:
+
+       Level:     Description:
+
+            0         0.0 - %$
+        0.146        14.6 - %$
+        0.236        23.6 - %$
+        0.382        38.2 - %$
+          0.5        50.0 - %$
+        0.618        61.8 - %$
+        0.786        78.6 - %$
+         0.86        86.0 - %$
+        0.942        94.2 - %$
+            1       100.0 - %$
+        -0.18       118.0 - %$
+        -0.27       127.0 - %$
+       -0.382       138.2 - %$
+       -0.618       161.8 - %$
+           -1       200.0 - %$
+       -1.618       261.8 - %$
+       -3.236	    423.6 - %$  
+
+
+8)  In order to enable the Training Wheels features, right-click on the Tunnel of 5's on your chart
+    (either of the two parallel purple dotted lines), and select "Tunnel of 5's properties" at the top
+    
+    Select the 2nd tab from the left, titled "Inputs", and scroll down until you get to the various
+    green objects whose names begin with "Show" (there are 5 of them in total)
+
+    Switch on as many you need by double-clicking on the word "false" and using the down arrow to
+    change it to "true"
+
+    Click "OK" when done
+
+
+9)  To manage your stops and targets right from your chart, make sure you have a smiley face next to
+    the words "Visual Trader" in the upper-right corner of your chart.  If, instead, you see an "x",
+    simply press down the "Expert Advisors" button on the toolbar the top of your MetaTrader screen
+    (green is on, red is off).  If you see a sad face, press F7, and under the "Common" tab make sure
+    that "Allow live trading" is checked
+
+    Once a stop and target is entered, you will see a blue line representing your entry, a red line marking
+    your current stop, and a green line where your target is set.  Activate either line by double-clicking
+    on it (white squares at each end will confirm that it has been activated), and then simply click & drag
+    to where you want the new level to be.  Your order will be adjusted and sent to your broker automatically
+
+  
+Good hunting!
+  
+-=fxKnight.com
+  
+  
+Be sure to visit www.fx-knight.com for other useful trading tools.
+  
+These templates & indicators are for Pro Trading subscribers and IB client use only - 
+thank you for respecting copyrights and hard work.  A huge thank you goes out to Yves Parent 
+(YRP), without whose ideas and programming expertise this new version would not have been 
+possible, as well as Terrence Staton (LaserEdge) for his contributions to the Knight Timer 
+and Weekly Pivot indicators.
+
+Please note that your license for the use of these templates and proprietary strategies is
+strictly for non-professional use.  If you wish to use them to trade money for others or as
+part of an automated EA, you must first obtain permission.  For more information, please see
+http://www.fx-knight.com/legal.html#terms or contact support@fxKnight.com
+  
+  

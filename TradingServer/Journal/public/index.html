@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Image Panels</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Dynamic Image Panels</h1>
+
+  <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search image name..." />
+    
+    <label>
+      <input type="checkbox" id="searchOnlyCheckbox">
+      Cycle only search results
+    </label>
+
+    <input type="date" id="dateFilter" />
+  </div>
+
+  <div class="container">
+    <div class="panel">
+      <p class="image-name" id="label1"></p>
+      <img id="img1" alt="Folder 1">
+    </div>
+
+    <div class="panel">
+      <p class="image-name" id="label2"></p>
+      <img id="img2" alt="Folder 2">
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="navigate('back')">Back</button>
+    <button onclick="navigate('next')">Next</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

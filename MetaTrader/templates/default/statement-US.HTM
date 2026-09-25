@@ -1,0 +1,95 @@
+<html><head><title>Monthly Statement</title>
+<style type="text/css" media="screen">
+<!--
+td { font: 8pt Tahoma,Arial; }
+//-->
+</style>
+<style type="text/css" media="print">
+<!--
+td { font: 7pt Tahoma,Arial; }
+//-->
+</style>
+</head>
+<body topmargin=1 marginheight=1>
+<font face="tahoma,arial" size=1>
+<div align=center>
+<div style="font: 20pt Times New Roman"><b><!--COMPANY--></b></div>
+
+<!--NOTRANS=No transactions-->
+
+<table cellspacing=1 cellpadding=3 border=0>
+<tr><td colspan=2>A/C No: <b><!--ACCOUNT--></b></td>
+    <td colspan=6>Name: <b><!--NAME--></b></td><td colspan=3>Currency: <b><!--CURRENCY--></b></td><td colspan=2 align=right><!--FULLTIME--></td></tr>
+<tr><td colspan=13><b>Closed Transactions:</b></td></tr>
+<tr align=center bgcolor="#C0C0C0">
+    <td>Ticket</td><td nowrap>Open Time</td><td>Type</td><td>Size</td><td>Item</td>
+    <td nowrap>Price</td><td>S / L</td><td>T / P</td><td nowrap>Close Time</td>
+    <td nowrap>Price</td><td>Commission</td><td>R/O Swap</td><td>Trade P/L</td></tr>
+
+<!--MONTHORDERS-->
+
+<tr align=right><td colspan=10>&nbsp;</td><td><!--CLOSED_COMMISSION--></td><td><!--CLOSED_STORAGE--></td><td><!--CLOSED_PROFIT--></td></tr>
+<tr><td colspan=4><b>Deposit/Withdrawal: <!--CLOSED_DEPOSIT--></b></td>
+    <td colspan=5><b>Credit Facility: <!--CLOSED_CREDIT--></b></td>
+    <td colspan=2><b>Closed Trade P/L: </b></td>
+    <td colspan=2 align=right><b><!--CLOSED_PL--></b></td></tr>
+<tr><td colspan=13 style="font: 1pt arial">&nbsp;</td></tr>
+
+<tr><td colspan=13><b>Open Trades:</b></td></tr>
+<tr align=center bgcolor="#C0C0C0">
+    <td>Ticket</td><td nowrap>Open Time</td><td>Type</td><td>Size</td><td>Item</td>
+    <td nowrap>Price</td><td>S / L</td><td>T / P</td><td nowrap>&nbsp;</td>
+    <td nowrap>Price</td><td>Commission</td><td>R/O Swap</td><td>Trade P/L</td></tr>
+
+<!--OPENPOSITIONS-->
+
+<tr align=right><td colspan=10>&nbsp;</td><td><!--COMMISSION--></td><td><!--STORAGE--></td><td><!--PROFIT--></td></tr>
+<tr><td colspan=9>&nbsp;</td><td colspan=2><b>Floating P/L:</b></td>
+    <td colspan=2 align=right><b><!--FLOAT_PL--></b></td></tr>
+<tr><td colspan=13 style="font: 1pt arial">&nbsp;</td></tr>
+
+<tr><td colspan=13><b>Working Orders:</b></td></tr>
+<tr align=center bgcolor="#C0C0C0">
+    <td>Ticket</td><td nowrap>Open Time</td><td>Type</td><td>Size</td><td>Item</td>
+    <td nowrap>Price</td><td>S / L</td><td>T / P</td><td colspan=2>Market Price</td><td colspan=3>&nbsp;</td></tr>
+	
+<!--OPENORDERS-->
+
+<tr><td colspan=13><b>A/C Summary:</b></td></tr>
+<tr><tr><td colspan=3 nowrap>Previous Ledger Balance:</td>
+    <td align=right colspan=2><!--PREVMONTHBALANCE--></td><td colspan=2>&nbsp;</td>
+    <td align=right colspan=3 align=right>Floating P/L:</td>
+    <td colspan=3 align=right><!--FLOAT_PL--></td></tr>
+<tr><tr><td colspan=3 nowrap>Previous Equity:</td>
+    <td align=right colspan=2><!--PREVMONTHEQUITY--></td><td colspan=2>&nbsp;</td>
+    <td align=right colspan=3 nowrap>Total Credit Facility:</td>
+    <td colspan=3 align=right><!--CREDIT--></td></tr>
+<tr><td colspan=3 nowrap>Closed Trade P/L:</td>
+    <td align=right colspan=2><!--CLOSED_PL--></td><td colspan=2>&nbsp;</td>
+    <td align=right colspan=3 nowrap>Equity:</td>
+    <td colspan=3 align=right><!--EQUITY--></td></tr>
+<tr><td colspan=3 nowrap>Deposit/Withdrawal:</td>
+    <td align=right colspan=2><!--DEPOSIT--></td><td colspan=2>&nbsp;</td>
+    <td align=right colspan=3 nowrap>Margin Requirement:</td>
+    <td colspan=3 align=right><!--MARGIN--></td></tr>
+<tr><td colspan=3 nowrap>Balance:</td>
+    <td align=right colspan=2><!--BALANCE--></td><td colspan=2>&nbsp;</td>
+    <td colspan=3 align=right>Available Margin:</td>
+    <td colspan=3 align=right><!--FREEMARGIN--></td></tr>
+<tr><td colspan=13 style="font: 8pt arial">&nbsp;</td></tr>
+</table>
+<br>
+<font face="tahoma,arial" size=1>
+	<div style="font: 7pt tahoma,arial">
+	Please report to us within 24 hours if this statement is incorrect.
+	Otherwise this statement will be considered to be confirmed by you.<br> <!--COMMENT-->  <br/><br/>
+	FOREX.com is CFTC Registered FCM/RFED & a member of the National Futures Association (NFA ID# 0339826).<br/>
+	Transaction Data Reports that include the transaction data required by NFA Compliance Rule 2-36 are available upon request.<br/>
+	Please call 1-877-367-3946 (Toll Free) or 1-908-731-0730 (International) to request this information.<br/><br/>
+	Bedminster One, 135 US Highway 202/206 Suite 11 Bedminster, NJ 07921, USA <br> Toll Free: 1.877.367.3946 | International: +1.908.731.0750 | Email: <a href="mailto:metatrader@forex.com">metatrader@forex.com</a>
+	</div>
+</font>
+</div>
+</font>
+</body>
+</html>
