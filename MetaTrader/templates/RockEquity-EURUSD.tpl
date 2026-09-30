@@ -1,9 +1,9 @@
 <chart>
-id=134326137274238714
+id=132772896699014290
 comment=fxKnight.com - Putting You Ahead of the Game™
 symbol=EURUSD
-period=240
-leftpos=17843
+period=60
+leftpos=11548
 digits=5
 scale=8
 graph=1
@@ -20,11 +20,11 @@ days=0
 descriptions=0
 shift_size=20
 fixed_pos=0
-window_left=182
-window_top=182
-window_right=1144
-window_bottom=784
-window_type=3
+window_left=0
+window_top=0
+window_right=760
+window_bottom=917
+window_type=1
 background_color=0
 foreground_color=16777215
 barup_color=11186720
@@ -100,7 +100,7 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-value_0=1.140400
+value_0=1.138350
 </object>
 <object>
 type=1
@@ -203,10 +203,257 @@ description_15=261.8 - %$
 </object>
 <object>
 type=21
+object_name=Daily PP
+period_flags=0
+create_time=1790696227
+description=                           Daily PP 1.1371
+color=16711935
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.137090
+</object>
+<object>
+type=21
+object_name=Daily S1
+period_flags=0
+create_time=1790696227
+description=                           Daily S1 1.1351
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.135130
+</object>
+<object>
+type=21
+object_name=Daily R1
+period_flags=0
+create_time=1790696227
+description=                           Daily R1 1.1389
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.138940
+</object>
+<object>
+type=21
+object_name=Daily S2
+period_flags=0
+create_time=1790696227
+description=                           Daily S2 1.1333
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.133280
+</object>
+<object>
+type=21
+object_name=Daily R2
+period_flags=0
+create_time=1790696227
+description=                           Daily R2 1.1409
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.140900
+</object>
+<object>
+type=21
+object_name=Daily S3
+period_flags=0
+create_time=1790696227
+description=                           Daily S3 1.1313
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.131320
+</object>
+<object>
+type=21
+object_name=Daily R3
+period_flags=0
+create_time=1790696227
+description=                           Daily R3 1.1427
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.142750
+</object>
+<object>
+type=21
+object_name=Daily M0
+period_flags=0
+create_time=1790696227
+description=                           Daily M0 1.1323
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.132300
+</object>
+<object>
+type=21
+object_name=Daily M1
+period_flags=0
+create_time=1790696227
+description=                           Daily M1 1.1342
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.134205
+</object>
+<object>
+type=21
+object_name=Daily M2
+period_flags=0
+create_time=1790696227
+description=                           Daily M2 1.1361
+color=15570276
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.136110
+</object>
+<object>
+type=21
+object_name=Daily M3
+period_flags=0
+create_time=1790696227
+description=                           Daily M3 1.1380
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.138015
+</object>
+<object>
+type=21
+object_name=Daily M4
+period_flags=0
+create_time=1790696227
+description=                           Daily M4 1.1399
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.139920
+</object>
+<object>
+type=21
+object_name=Daily M5
+period_flags=0
+create_time=1790696227
+description=                           Daily M5 1.1418
+color=4678655
+font=tahoma 
+fontsize=7
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.141825
+</object>
+<object>
+type=21
 object_name=Weekly PP
 period_flags=0
-create_time=1788140598
-description=                           Weekly PP 1.1615
+create_time=1790696227
+description=                           Weekly PP 1.1415
 color=13850042
 font=tahoma
 fontsize=8
@@ -217,15 +464,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.161510
+time_0=1790708400
+value_0=1.141460
 </object>
 <object>
 type=21
 object_name=Weekly R1
 period_flags=0
-create_time=1788140598
-description=                           Weekly R1 1.1653
+create_time=1790696227
+description=                           Weekly R1 1.1471
 color=3937500
 font=tahoma
 fontsize=8
@@ -236,15 +483,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.165310
+time_0=1790708400
+value_0=1.147067
 </object>
 <object>
 type=21
 object_name=Weekly R2
 period_flags=0
-create_time=1788140598
-description=                           Weekly R2 1.1724
+create_time=1790696227
+description=                           Weekly R2 1.1551
 color=3937500
 font=tahoma
 fontsize=8
@@ -255,15 +502,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.172450
+time_0=1790708400
+value_0=1.155113
 </object>
 <object>
 type=21
 object_name=Weekly R3
 period_flags=0
-create_time=1788140598
-description=                           Weekly R3 1.1763
+create_time=1790696227
+description=                           Weekly R3 1.1607
 color=3937500
 font=tahoma
 fontsize=8
@@ -274,34 +521,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.176250
-</object>
-<object>
-type=21
-object_name=Weekly S1
-period_flags=0
-create_time=1788140598
-description=                           Weekly S1 1.1544
-color=11829830
-font=tahoma
-fontsize=8
-angle=0
-anchor_pos=7
-background=0
-filling=0
-selectable=1
-hidden=0
-zorder=0
-time_0=1788148800
-value_0=1.154370
+time_0=1790708400
+value_0=1.160717
 </object>
 <object>
 type=21
 object_name=Weekly S2
 period_flags=0
-create_time=1788140598
-description=                           Weekly S2 1.1506
+create_time=1790696227
+description=                           Weekly S2 1.1278
 color=11829830
 font=tahoma
 fontsize=8
@@ -312,15 +540,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.150570
+time_0=1790708400
+value_0=1.127813
 </object>
 <object>
 type=21
 object_name=Weekly S3
 period_flags=0
-create_time=1788140598
-description=                           Weekly S3 1.1434
+create_time=1790696227
+description=                           Weekly S3 1.1198
 color=11829830
 font=tahoma
 fontsize=8
@@ -331,15 +559,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.143430
+time_0=1790708400
+value_0=1.119767
 </object>
 <object>
 type=21
 object_name=Weekly M3
 period_flags=0
-create_time=1788140598
-description=                           Weekly M3 1.1634
+create_time=1790696227
+description=                           Weekly M3 1.1443
 color=3937500
 font=tahoma
 fontsize=8
@@ -350,15 +578,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.163410
+time_0=1790708400
+value_0=1.144265
 </object>
 <object>
 type=21
 object_name=Weekly M4
 period_flags=0
-create_time=1788140598
-description=                           Weekly M4 1.1689
+create_time=1790696227
+description=                           Weekly M4 1.1511
 color=3937500
 font=tahoma
 fontsize=8
@@ -369,15 +597,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.168880
+time_0=1790708400
+value_0=1.151090
 </object>
 <object>
 type=21
 object_name=Weekly M5
 period_flags=0
-create_time=1788140598
-description=                           Weekly M5 1.1744
+create_time=1790696227
+description=                           Weekly M5 1.1579
 color=3937500
 font=tahoma
 fontsize=8
@@ -388,15 +616,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.174350
+time_0=1790708400
+value_0=1.157915
 </object>
 <object>
 type=21
 object_name=Weekly M2
 period_flags=0
-create_time=1788140598
-description=                           Weekly M2 1.1579
+create_time=1790696227
+description=                           Weekly M2 1.1374
 color=11829830
 font=tahoma
 fontsize=8
@@ -407,15 +635,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.157940
+time_0=1790708400
+value_0=1.137440
 </object>
 <object>
 type=21
 object_name=Weekly M1
 period_flags=0
-create_time=1788140598
-description=                           Weekly M1 1.1525
+create_time=1790696227
+description=                           Weekly M1 1.1306
 color=11829830
 font=tahoma
 fontsize=8
@@ -426,15 +654,15 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.152470
+time_0=1790708400
+value_0=1.130615
 </object>
 <object>
 type=21
 object_name=Weekly M0
 period_flags=0
-create_time=1788140598
-description=                           Weekly M0 1.1470
+create_time=1790696227
+description=                           Weekly M0 1.1238
 color=11829830
 font=tahoma
 fontsize=8
@@ -445,8 +673,67 @@ filling=0
 selectable=1
 hidden=0
 zorder=0
-time_0=1788148800
-value_0=1.147000
+time_0=1790708400
+value_0=1.123790
+</object>
+<object>
+type=21
+object_name=Weekly S1
+period_flags=0
+create_time=1790700136
+description=                           Weekly S1 1.1334
+color=11829830
+font=tahoma
+fontsize=8
+angle=0
+anchor_pos=7
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+time_0=1790708400
+value_0=1.133417
+</object>
+<object>
+type=10
+object_name=Fibo 60072
+period_flags=0
+create_time=1790700200
+color=255
+style=2
+weight=1
+background=0
+filling=0
+selectable=1
+hidden=0
+zorder=0
+color2=65535
+style2=0
+weight2=1
+time_0=1790704800
+value_0=1.133480
+time_1=1790708400
+value_1=1.132550
+levels_ray=0
+level_0=0.0000
+description_0=0.0
+level_1=0.2360
+description_1=23.6
+level_2=0.3820
+description_2=38.2
+level_3=0.5000
+description_3=50.0
+level_4=0.6180
+description_4=61.8
+level_5=1.0000
+description_5=100.0
+level_6=1.6180
+description_6=161.8
+level_7=2.6180
+description_7=261.8
+level_8=4.2360
+description_8=423.6
 </object>
 </indicator>
 <indicator>
@@ -1032,5 +1319,11 @@ period_flags=0
 show_data=1
 </indicator>
 </window>
+
+<expert>
+name=RockSnapshots
+flags=279
+window_num=0
+</expert>
 </chart>
 

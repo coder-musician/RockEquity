@@ -15,99 +15,110 @@ class Journal
   {
 private:
    
-      static string GetImagesFolder(string symbol, string timeframe) {
-         
-         datetime ServerTime = TimeCurrent();
-         string ServerTimeString = TimeToString(ServerTime);
-         ServerTimeString = StringSubstr(ServerTimeString,0,10);
-         
-         //string ImageRootPath = IMAGE_PATH + symbol + "\\" + ServerTimeString + "\\" + timeframe + "\\";
-         string ImageRootPath = timeframe + "\\";
-         
-         return  ImageRootPath;
-   }   
+   static string GetImageFullPath(string group, string desc) {
       
-      static string GetImageName(string symbol, string desc, string timeframe) {
+      datetime LocalTime = TimeLocal();
+      string LocalTimeString = TimeToString(LocalTime);
       
-         datetime LocalTime = TimeLocal();
-         datetime ServerTime = TimeCurrent();
-         
-         string LocalTimeString = TimeToString(LocalTime);
-         StringReplace(LocalTimeString, " ", "_");
-         StringReplace(LocalTimeString, ":", ".");
-         
-         string ServerTimeString = TimeToString(ServerTime);
-         StringReplace(ServerTimeString, " ", "_");
-         StringReplace(ServerTimeString, ":", ".");
-         
-         string ImageName = symbol + "--" + ServerTimeString + "--" + LocalTimeString + 
-            "--" + desc + "--" + timeframe + IMAGE_EXTENSION;
-         
-         return ImageName;
+      datetime ServerTime = TimeCurrent();
+      string ServerTimeString = TimeToString(ServerTime);
+      
+      // FOLDER NAME
+      
+      string FolderName = ChartSymbol() + "\\";      
+      string YearMonth = StringSubstr(ServerTimeString,0,7);      
+      FolderName = FolderName + YearMonth + "\\" + group + "\\";
+      
+      
+      // IMAGE NAME
+      
+      string ImageName = ChartSymbol() + "--";
+       
+      StringReplace(LocalTimeString, " ", "_");
+      StringReplace(LocalTimeString, ":", ".");      
+      ImageName = ImageName + LocalTimeString + "--";
+      
+      StringReplace(ServerTimeString, " ", "_");
+      StringReplace(ServerTimeString, ":", ".");
+      ImageName = ImageName + ServerTimeString + "--";      
+      
+      ImageName = ImageName + desc + IMAGE_EXTENSION;
+      
+      return FolderName + ImageName;   
    }
+   
+   static void TakeSnapshot(long chartid, string group, string desc) {
+   
+      string imagePath = GetImageFullPath(group, desc);
       
-      static string GetImageFullPath(string symbol, string desc, string timeframe) {
-         
-         return GetImagesFolder(symbol, timeframe) + 
-            GetImageName(symbol, desc, timeframe);
-      }
-      
-      static void TakeSnapshot(long ltf_chart_id, long htf_chart_id, string desc) {
-         
-         string symbol = ChartSymbol(ltf_chart_id);
-         string imagePath = GetImageFullPath(symbol, desc, "LTF");
-               
-         bool SnapSuccess = ChartScreenShot(LTF_CHART_ID, imagePath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT); 
-         
-         symbol = ChartSymbol(htf_chart_id);
-         imagePath = GetImageFullPath(symbol, desc, "HTF");
-         
-         SnapSuccess = ChartScreenShot(HTF_CHART_ID, imagePath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT); 
-      }
-
+      bool SnapSuccess = ChartScreenShot(chartid, imagePath, IMAGE_XPIX, 
+         IMAGE_YPIX, ALIGN_RIGHT); 
+   }
    
 public:
 
    Journal();
   ~Journal();
-  
-   static void TakeMarketSnapshot(long ltf_chart_id, long htf_chart_id) {
+   
+   static void TakeMarketSnapshot(long LTFChartID, long HTFChartID) {
       
-      TakeSnapshot(ltf_chart_id, htf_chart_id, "Market");
+      TakeSnapshot(LTFChartID, "LTF", "LTF");
+      TakeSnapshot(HTFChartID, "HTF", "HTF");
    }
    
-   static void TakeOpenSnapshot(long ltf_chart_id, long htf_chart_id) {
+   static void TakeOpenSnapshot(long LTFChartID, long HTFChartID) {
       
-      TakeSnapshot(ltf_chart_id, htf_chart_id, "Open--" + IntegerToString(ORDER_TICKET));
+      string Desc = "Open--" + IntegerToString(ORDER_TICKET);
+          
+      TakeSnapshot(LTFChartID, "LTF", Desc);
+      TakeSnapshot(LTFChartID, "Trades\\LTF", Desc);
+      
+      TakeSnapshot(HTFChartID, "HTF", Desc);
+      TakeSnapshot(HTFChartID, "Trades\\HTF", Desc);
    }
    
-   static void TakeTradeNextSnapshot(long ltf_chart_id, long htf_chart_id) {
+   static void TakeTradeNextSnapshot(long LTFChartID, long HTFChartID) {
       
-      TakeSnapshot(ltf_chart_id, htf_chart_id, "Next--" + IntegerToString(ORDER_TICKET));
+      string Desc = "Next--" + IntegerToString(ORDER_TICKET);
+          
+      TakeSnapshot(LTFChartID, "LTF", Desc);
+      TakeSnapshot(LTFChartID, "Trades\\LTF", Desc);
+      
+      TakeSnapshot(HTFChartID, "HTF", Desc);
+      TakeSnapshot(HTFChartID, "Trades\\HTF", Desc);
    }
    
-   static void TakeCloseSnapshot(long ltf_chart_id, long htf_chart_id) {
+   static void TakeCloseSnapshot(long LTFChartID, long HTFChartID) {
       
-      TakeSnapshot(ltf_chart_id, htf_chart_id, "Close--" + IntegerToString(ORDER_TICKET));
+      string Desc = "Close--" + IntegerToString(ORDER_TICKET);
+          
+      TakeSnapshot(LTFChartID, "LTF", Desc);
+      TakeSnapshot(LTFChartID, "Trades\\LTF", Desc);
+      
+      TakeSnapshot(HTFChartID, "HTF", Desc);
+      TakeSnapshot(HTFChartID, "Trades\\HTF", Desc);   
    }
    
-   static void TakeCustomSnapshot(long ltf_chart_id, long htf_chart_id) {
-   
-      string ImageFolder = GetImagesFolder(Symbol(), "Custom\\" + Symbol() + "\\LTF\\");
-      string ImageName = GetImageName(Symbol(), "Custom", "LTF");
+   static void TakeCustomSnapshot(long LTFChartID) {
       
-      string symbol = ChartSymbol(LTF_CHART_ID);
-      string imagePath = ImageFolder+ImageName;            
-      bool SnapSuccess = ChartScreenShot(LTF_CHART_ID, imagePath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+      TakeSnapshot(LTFChartID, "LTF", "Custom-LTF");
+      TakeSnapshot(LTFChartID, "Custom\\LTF", "Custom-LTF");
       
-      
-      ImageFolder = GetImagesFolder(Symbol(), "Custom\\" + Symbol() + "\\HTF\\");
-      ImageName = GetImageName(Symbol(), "Custom", "HTF");
-      
-      symbol = ChartSymbol(HTF_CHART_ID);
-      imagePath = ImageFolder+ImageName;   
-      SnapSuccess = ChartScreenShot(HTF_CHART_ID, imagePath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+      TakeSnapshot(LTFChartID, "HTF", "Custom-HTF");
+      TakeSnapshot(LTFChartID, "Custom\\HTF", "Custom-HTF");
    }
+   
+   static void TakeLTASnapshot(long LTAChartID) {
+     
+     int chartPeriod = ChartPeriod(LTAChartID);
+     string dir = Utils::GetChartPeriodName(chartPeriod);
+     
+     TakeSnapshot(LTAChartID, dir, dir);     
+   }
+   
+   
+   
+   
    
       
   };
