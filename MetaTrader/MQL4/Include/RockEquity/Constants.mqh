@@ -11,11 +11,11 @@
 // --------------------------- CHARTS
    string CHART_SYMBOL = "";
 
-   int LTF_PERIOD = PERIOD_D1;
+   int LTF_PERIOD = PERIOD_H1;
    int HTF_PERIOD;
    
-   long LTF_CHART_ID = 134325997127756350;
-   long HTF_CHART_ID = 134325997110375514;
+   long LTF_CHART_ID = 0;
+   long HTF_CHART_ID = 0;
    
    int CANDLES_COUNT;
 
@@ -39,7 +39,7 @@
    int CANDLE_BEAR_HTF_BODY_COLOR = clrCrimson;
    
 // --------------------------- JOURNAL
-   string IMAGE_PATH = "";
+   string IMAGE_PATH = "Journal\\";
    string IMAGE_EXTENSION = ".png";
    
    int IMAGE_XPIX = 615;
@@ -53,6 +53,10 @@
    bool ORDER_IS_ACTIVE; 
    int ORDERS_ACTIVE_AMOUNT;
    
+   bool SET_PROFIT_LIMIT = true;
+   double PROFIT_LIMIT_AMOUNT = 0;
+   double PROFIT_LIMIT_PERCENTAGE = 0.005;
+      
    
    string ORDER_DATE;
    string ORDER_TIME;

@@ -14,7 +14,7 @@
 class Journal
   {
 private:
-   
+   /*
    static string GetImageFullPath(string group, string desc) {
       
       datetime LocalTime = TimeLocal();
@@ -53,6 +53,90 @@ private:
       
       bool SnapSuccess = ChartScreenShot(chartid, imagePath, IMAGE_XPIX, 
          IMAGE_YPIX, ALIGN_RIGHT); 
+   }*/
+   
+   
+   static string GetImageName(string symbol) {
+      
+         datetime LocalTime = TimeLocal();
+         string LocalTimeString = TimeToString(LocalTime);
+         
+         datetime ServerTime = TimeCurrent();
+         string ServerTimeString = TimeToString(ServerTime);
+            
+         string ImageName = symbol + "-";
+             
+         StringReplace(LocalTimeString, " ", "--");
+         StringReplace(LocalTimeString, ":", ".");      
+         ImageName = ImageName + LocalTimeString + "--";
+         
+         StringReplace(ServerTimeString, " ", "-");
+         StringReplace(ServerTimeString, ":", ".");
+         ImageName = ImageName + ServerTimeString + "-"; 
+         
+         return ImageName;
+   }
+   
+   
+   static void TakeSnapshot(string symbol, string desc) {      
+      
+      string rootdir = IMAGE_PATH + symbol + "\\";
+      string ImageName = GetImageName(symbol);
+      string fullpath = "";
+      
+      bool SnapSuccess = false;
+      string timeframe = "";
+      
+      long chart_id = ChartFirst();      
+      int ChartCounter = 0;
+      
+      bool isLTFCompliant = false;
+
+      while(chart_id >= 0) {
+      
+         if(ChartSymbol(chart_id) == symbol) {
+            
+            ChartCounter++;
+            
+            if(ChartCounter == 1) {               
+               
+               if(ChartPeriod(chart_id) == LTF_PERIOD) {
+               
+                  isLTFCompliant = true;
+                  
+                  timeframe = "LTF";               
+                  fullpath = rootdir + "Intraday\\" + timeframe + "\\" + ImageName + desc + "-" + timeframe + IMAGE_EXTENSION;
+                  
+                  SnapSuccess = ChartScreenShot(chart_id, fullpath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+               }               
+            }
+            
+            if(ChartCounter == 2 && isLTFCompliant) {
+            
+               timeframe = "HTF";               
+               fullpath = rootdir + "Intraday\\" + timeframe + "\\" + ImageName + desc + "-" + timeframe + IMAGE_EXTENSION;
+               
+               SnapSuccess = ChartScreenShot(chart_id, fullpath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+            }
+            
+            if(ChartCounter == 3 && isLTFCompliant) {
+            
+               timeframe = "Daily";               
+               fullpath = rootdir + "LTA\\" + timeframe + "\\" + ImageName + desc + "-" + timeframe + IMAGE_EXTENSION;
+               
+               SnapSuccess = ChartScreenShot(chart_id, fullpath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+            }
+            
+            if(ChartCounter == 4 && isLTFCompliant) {
+            
+               timeframe = "Weekly";               
+               fullpath = rootdir + "LTA\\" + timeframe + "\\" + ImageName + desc + "-" + timeframe + IMAGE_EXTENSION;
+               
+               SnapSuccess = ChartScreenShot(chart_id, fullpath, IMAGE_XPIX, IMAGE_YPIX, ALIGN_RIGHT);
+            }
+            chart_id = ChartNext(chart_id);  
+         }             
+      }
    }
    
 public:
@@ -60,7 +144,30 @@ public:
    Journal();
   ~Journal();
    
-   static void TakeMarketSnapshot(long LTFChartID, long HTFChartID) {
+   static void TakeMarketSnapshot(string symbol) {
+      
+      TakeSnapshot(symbol,"Market");
+   }
+   
+   static void TakeOpenSnapshot(string symbol, int orderid) {
+      
+      TakeSnapshot(symbol,"Open-" + IntegerToString(orderid));
+   }
+   
+   static void TakeTradeNextSnapshot(string symbol, int orderid) {
+      
+      TakeSnapshot(symbol,"Next-" + IntegerToString(orderid));
+   }
+   
+   static void TakeCloseSnapshot(string symbol, int orderid) {
+      
+      TakeSnapshot(symbol,"Close-" + IntegerToString(orderid));
+   }
+   static void TakeCustomSnapshot(string symbol) {
+      
+      TakeSnapshot(symbol,"Custom");
+   }
+   /*static void TakeMarketSnapshot(long LTFChartID, long HTFChartID) {
       
       TakeSnapshot(LTFChartID, "LTF", "LTF");
       TakeSnapshot(HTFChartID, "HTF", "HTF");
@@ -111,10 +218,10 @@ public:
    static void TakeLTASnapshot(long LTAChartID) {
      
      int chartPeriod = ChartPeriod(LTAChartID);
-     string dir = Utils::GetChartPeriodName(chartPeriod);
+     //string dir = Utils::GetChartPeriodName(chartPeriod);
      
-     TakeSnapshot(LTAChartID, dir, dir);     
-   }
+     //TakeSnapshot(LTAChartID, dir, dir);     
+   }*/
    
    
    

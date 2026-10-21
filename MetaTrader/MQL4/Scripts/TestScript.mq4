@@ -14,15 +14,17 @@
 
 #include "..\\Include\\RockEquity\\Utils.mqh";
 #include "..\\Include\\RockEquity\\Constants.mqh";
-
-/*#include "..\\Include\\RockEquity\\Classes\\Journal.mqh";
+#include "..\\Include\\RockEquity\\Classes\\Journal.mqh";
 #include "..\\Include\\RockEquity\\Classes\\Orders.mqh";
-#include "..\\Include\\RockEquity\\Classes\\Management.mqh";*/
+#include "..\\Include\\RockEquity\\Classes\\Management.mqh";
 #include "..\\Include\\RockEquity\\Classes\\RockExpert.mqh";
-   
-   void OnStart() {
+#include "..\\Include\\RockEquity\\Utils.mqh";
+
+void OnStart() {
       
-      Alert(ChartID());
-   }
-   
+      PROFIT_LIMIT_AMOUNT = AccountEquity() + (AccountEquity() * PROFIT_LIMIT_PERCENTAGE/100);
+      
+      if(SET_PROFIT_LIMIT && (AccountBalance() >= PROFIT_LIMIT_AMOUNT))
+         Alert(AccountBalance() + " -- " + PROFIT_LIMIT_AMOUNT);
+}
 //+------------------------------------------------------------------+

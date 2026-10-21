@@ -169,7 +169,6 @@ public:
          MoveLine = ObjectSetDouble(ChartId, CANDLES_NAMES[1], OBJPROP_PRICE1, Bid);
          MoveLine = ObjectSetDouble(ChartId, CANDLES_NAMES[2], OBJPROP_PRICE1, Bid);
       }
-      
    }
   
   

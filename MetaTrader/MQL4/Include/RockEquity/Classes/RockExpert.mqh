@@ -36,32 +36,22 @@ public:
    }
       
       
-   static void RefreshChartIDs(){
+   static long GetLTFId() {
       
-      if(ChartID() != LTF_CHART_ID || ChartID() != HTF_CHART_ID) {
+      long ltf_id = 0;
+      long chart_id = ChartFirst();
       
-         long ChartId = ChartFirst();
-         long TMP_Chart_IDs[2] = {0,0};
-         int ChartCounter = 0;
-         
-         while (ChartId >= 0 && ChartCounter <= 2) {
-         
-            if(ChartSymbol(ChartId) == CHART_SYMBOL) {
-               
-                  if(ChartCounter == 0)            
-                     HTF_CHART_ID = ChartId;
-                  
-                  else if(ChartCounter == 1)   
-                     LTF_CHART_ID = ChartId;
-                  
-                  else
-                     break;
-                     
-               ChartCounter++;
-               ChartId = ChartNext(ChartId);
-            }
+      while(chart_id >= 0) {
+      
+         if(ChartSymbol(chart_id) == Symbol()){
+            ltf_id = chart_id;
+            break;
          }
+         
+         chart_id = ChartNext(chart_id);  
       }
+      
+      return ltf_id;
    }
    
    static void SetChartsPeriods() {
@@ -70,39 +60,101 @@ public:
       ChartSetSymbolPeriod(HTF_CHART_ID, NULL, Utils::GetHTFPeriod(LTF_PERIOD));         
    }
    
-   static void SetChartColors() {
+   static void SetChartColor(long ChartId) {
+   
+      long ltf_id = GetLTFId();
       
-      ChartSetInteger(LTF_CHART_ID, CHART_COLOR_CANDLE_BULL, CANDLE_BULL_LTF_BODY_COLOR);
-      ChartSetInteger(LTF_CHART_ID, CHART_COLOR_CANDLE_BEAR, CANDLE_BEAR_LTF_BODY_COLOR);      
-      ChartSetInteger(LTF_CHART_ID, CHART_COLOR_CHART_UP, CANDLE_BULL_LTF_WICK_COLOR);
-      ChartSetInteger(LTF_CHART_ID, CHART_COLOR_CHART_DOWN, CANDLE_BEAR_LTF_WICK_COLOR);
-      
-      
-      ChartSetInteger(HTF_CHART_ID, CHART_COLOR_CANDLE_BULL, CANDLE_BULL_HTF_BODY_COLOR);
-      ChartSetInteger(HTF_CHART_ID, CHART_COLOR_CANDLE_BEAR, CANDLE_BEAR_HTF_BODY_COLOR);         
-      ChartSetInteger(HTF_CHART_ID, CHART_COLOR_CHART_UP, CANDLE_BULL_HTF_WICK_COLOR);
-      ChartSetInteger(HTF_CHART_ID, CHART_COLOR_CHART_DOWN, CANDLE_BEAR_HTF_WICK_COLOR);
+      if(ChartId == ltf_id) {
+         
+         ChartSetInteger(ChartId, CHART_COLOR_CANDLE_BULL, CANDLE_BULL_LTF_BODY_COLOR);
+         ChartSetInteger(ChartId, CHART_COLOR_CANDLE_BEAR, CANDLE_BEAR_LTF_BODY_COLOR);      
+         ChartSetInteger(ChartId, CHART_COLOR_CHART_UP, CANDLE_BULL_LTF_WICK_COLOR);
+         ChartSetInteger(ChartId, CHART_COLOR_CHART_DOWN, CANDLE_BEAR_LTF_WICK_COLOR);
+      }
+      else {
+         
+         ChartSetInteger(ChartId, CHART_COLOR_CANDLE_BULL, CANDLE_BULL_HTF_BODY_COLOR);
+         ChartSetInteger(ChartId, CHART_COLOR_CANDLE_BEAR, CANDLE_BEAR_HTF_BODY_COLOR);      
+         ChartSetInteger(ChartId, CHART_COLOR_CHART_UP, CANDLE_BULL_HTF_WICK_COLOR);
+         ChartSetInteger(ChartId, CHART_COLOR_CHART_DOWN, CANDLE_BEAR_HTF_WICK_COLOR);
+      }
          
    }
    
-   static void ApplyTemplates() {
-   
-      string templateName = "RockEquity-" + CHART_SYMBOL + ".tpl";
+   static void ApplyTemplates(string symbol, long ChartId) {
       
-      ChartApplyTemplate(LTF_CHART_ID, templateName);
-      ChartApplyTemplate(HTF_CHART_ID, templateName);
+          
+      string templateName = "RockEquity-" + symbol + ".tpl";
       
+      long chart_id = ChartFirst();
+      
+      while(chart_id >= 0) {
+      
+         if(ChartSymbol(chart_id) == symbol) {
+         
+            ChartApplyTemplate(chart_id, templateName);
+         }
+         
+         chart_id = ChartNext(chart_id);      
+      }      
    }
    
-   static void ApplyChartSettings() {
+   static void LoadTemplates(string symbol) {
+      
+      long chart_id = ChartFirst();      
+      string templateName = "RockEquity-" + symbol + ".tpl";
+      
+      while(chart_id >= 0) {
+      
+         if(ChartSymbol(chart_id) == symbol) {
+         
+            ChartApplyTemplate(chart_id, templateName);
+            Sleep(1000);
+         }
+         
+         chart_id = ChartNext(chart_id);      
+      }      
+   }
+   
+   static void SetChartPeriod(string symbol, long chartID) {
 
-      if(ChartID() != LTF_CHART_ID || ChartID() != HTF_CHART_ID) {
-         CHART_SYMBOL = Symbol();
-                  
-         //RefreshChartIDs();
-         SetChartsPeriods();
-         SetChartColors();
-         //ApplyTemplates();
+      long chart_id = ChartFirst();
+      
+      int ChartCounter = 0;
+
+      while(chart_id >= 0) {
+      
+         if(ChartSymbol(chart_id) == symbol) {
+            
+            ChartCounter++;
+
+
+            if(ChartCounter == 1 && chart_id == chartID) {
+
+               ChartSetSymbolPeriod(chartID, NULL, LTF_PERIOD);
+               break;
+            }
+            
+            if(ChartCounter == 2 && chart_id == chartID) {
+
+               ChartSetSymbolPeriod(chartID, NULL,  Utils::GetHTFPeriod(LTF_PERIOD));
+               break;
+            }
+            
+            if(ChartCounter == 3 && chart_id == chartID) {
+            
+               ChartSetSymbolPeriod(chartID, NULL, PERIOD_D1);
+               break; 
+            }
+            
+            if(ChartCounter == 4 && chart_id == chartID) {
+            
+               ChartSetSymbolPeriod(chartID, NULL, PERIOD_W1); 
+               break;
+            }
+         }
+         
+         chart_id = ChartNext(chart_id);      
       }
    }
    

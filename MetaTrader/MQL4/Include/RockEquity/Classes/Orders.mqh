@@ -106,8 +106,8 @@ public:
          }         
          
          ORDER_UNITS = ORDER_RISK_CURRENCY/ORDER_RISK_PIPS;         
-         ORDER_LOTS = ORDER_UNITS / ORDER_STANDARD_LOT;
-         
+         //ORDER_LOTS = ORDER_UNITS / ORDER_STANDARD_LOT;
+ORDER_LOTS = 0.01;
          ORDER_TICKET = OrderSend(symbol, ORDER_OPERATION, ORDER_LOTS, ORDER_OPEN_PRICE, 
          ORDER_SLIPPAGE, ORDER_ORIGINAL_STOP_LOSS_PRICE, ORDER_ORIGINAL_TAKE_PROFIT_PRICE);
          
@@ -117,29 +117,40 @@ public:
    }
      
    
-   static void UpdateOrder(long ChartId, int &OrdersList[]) {
+   static void UpdateOrder(long ChartId, int &OrdersList[], string symbol) {
       
-      double CurrentTakeProfit = Management::GetLinePrice(ChartId, "TP");
-      double CurrentStopLoss = Management::GetLinePrice(ChartId, "SL");
       
-      if(ORDER_OPERATION == OP_SELL) {
-         
-         CurrentTakeProfit = CurrentTakeProfit + ORDER_SPREAD;
-         CurrentStopLoss = CurrentStopLoss + ORDER_SPREAD;
-      }
+      PROFIT_LIMIT_AMOUNT = AccountBalance() + (AccountBalance() * PROFIT_LIMIT_PERCENTAGE/100);
       
-      for(int i=0; i < ArraySize(ORDERS_LIST); i++) {
+      
+      if(SET_PROFIT_LIMIT && (AccountEquity() < PROFIT_LIMIT_AMOUNT)) {
+      
+         double CurrentTakeProfit = Management::GetLinePrice(ChartId, "TP");
+         double CurrentStopLoss = Management::GetLinePrice(ChartId, "SL");
          
-         bool UpdateOrder = False;
-           
-         if(CurrentTakeProfit != ORDER_TAKE_PROFIT_PRICE)
-            UpdateOrder = True;
-         
-         if(CurrentStopLoss != ORDER_STOP_LOSS_PRICE)
-            UpdateOrder = True;
+         if(ORDER_OPERATION == OP_SELL) {
             
-         if(UpdateOrder) 
-            bool UpdateSuccess = OrderModify(ORDERS_LIST[i], 0, CurrentStopLoss, CurrentTakeProfit, 0, clrNONE); 
+            CurrentTakeProfit = CurrentTakeProfit + ORDER_SPREAD;
+            CurrentStopLoss = CurrentStopLoss + ORDER_SPREAD;
+         }
+         
+         for(int i=0; i < ArraySize(ORDERS_LIST); i++) {
+            
+            bool UpdateOrder = False;
+              
+            if(CurrentTakeProfit != ORDER_TAKE_PROFIT_PRICE)
+               UpdateOrder = True;
+            
+            if(CurrentStopLoss != ORDER_STOP_LOSS_PRICE)
+               UpdateOrder = True;
+               
+            if(UpdateOrder) 
+               bool UpdateSuccess = OrderModify(ORDERS_LIST[i], 0, CurrentStopLoss, CurrentTakeProfit, 0, clrNONE); 
+         }
+      } else {
+         
+         SET_PROFIT_LIMIT = false;         
+         CloseOrders(symbol);
       }
    }
    

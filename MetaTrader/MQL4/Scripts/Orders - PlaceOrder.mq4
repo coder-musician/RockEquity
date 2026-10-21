@@ -17,7 +17,14 @@
 void OnStart()
   {
 //--- 
-      Orders::PlaceOrder(ChartID(), Symbol());
+      PROFIT_LIMIT_AMOUNT = AccountBalance() + (AccountBalance() * PROFIT_LIMIT_PERCENTAGE/100);
+      
+      Alert(PROFIT_LIMIT_AMOUNT);
+      
+      if(SET_PROFIT_LIMIT && (AccountBalance() < PROFIT_LIMIT_AMOUNT))
+         Orders::PlaceOrder(ChartID(), Symbol());
+      else
+         Alert("Profit Limit Reached");
    
   }
 //+------------------------------------------------------------------+

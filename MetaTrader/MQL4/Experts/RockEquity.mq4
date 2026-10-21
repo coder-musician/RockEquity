@@ -20,37 +20,10 @@
 //+------------------------------------------------------------------+
       
 int OnInit()
-  {
-      if (Symbol() == "EURUSD") {
-         LTF_CHART_ID = 134333430149543870;
-         HTF_CHART_ID = 134333430135761055;
-      }
-      
-      if (Symbol() == "EURGBP") {
-         LTF_CHART_ID = 134334337949015556;
-         HTF_CHART_ID = 134334337834424651;
-      }
-      
-      if (Symbol() == "GBPUSD") {
-         LTF_CHART_ID = 134334340546161909;
-         HTF_CHART_ID = 134334359205706787;
-      }
-      
-      if (Symbol() == "EURJPY") {
-         LTF_CHART_ID = 134334341463480176;
-         HTF_CHART_ID = 134334341438855800;
-      }
-      
-      if (Symbol() == "USDJPY") {
-         LTF_CHART_ID = 134334345187495181;
-         HTF_CHART_ID = 134334345173670289;
-      }
-      
-      if (Symbol() == "USDCAD") {
-         LTF_CHART_ID = 134334345904232668;
-         HTF_CHART_ID = 134334345933093075;
-      }
-      
+  {      
+      LTF_CHART_ID = RockExpert::GetLTFId();
+      RockExpert::SetChartColor(ChartID());      
+      RockExpert::SetChartPeriod(Symbol(), ChartID());
       
       return(INIT_SUCCEEDED);
   }
@@ -68,47 +41,52 @@ void OnDeinit(const int reason)
 //+------------------------------------------------------------------+
 void OnTick()
   {   
-      ORDER_SPREAD = Ask-Bid;
-      
       bool IsNewCandle = RockExpert::IsNewCandle();
-      RockExpert::ApplyChartSettings(); // FUNCTIONS DISABLED --> RefreshChartIDs / ApplyTemplates
-      Management::RefreshLevels(ChartID());         
-
+      
       CustomVolume::PlotCustomVolume(ChartID(), IsNewCandle);  
       Candlesticks::UpdateCandlesOpen(ChartID(), IsNewCandle);
       
-      if(Orders::HaveOpenOrders(Symbol())) {
+      if(ChartID() == LTF_CHART_ID) {
       
-         if(!ORDER_IS_ACTIVE){ 
-            
-            // This happens only ONCE -> when the TRADE is just OPENED            
-            ORDER_TICKET = ORDERS_LIST[ORDERS_ACTIVE_AMOUNT-1];
-            ORDER_IS_ACTIVE = True;            
-            Journal::TakeOpenSnapshot(LTF_CHART_ID, HTF_CHART_ID);
-            
-         } else { 
+         ORDER_SPREAD = Ask-Bid;
+         Management::RefreshLevels(ChartID());
          
-            // This happens ALWAYS throughout the TRADE LIFETIME.
-            Orders::UpdateOrder(ChartID(), ORDERS_LIST);
+         if(Orders::HaveOpenOrders(Symbol())) {
+         
+            if(!ORDER_IS_ACTIVE){ 
+               
+               // This happens only ONCE -> when the TRADE is just OPENED            
+               ORDER_TICKET = ORDERS_LIST[ORDERS_ACTIVE_AMOUNT-1];
+               ORDER_IS_ACTIVE = True;            
+               Journal::TakeOpenSnapshot(Symbol(), ORDER_TICKET);
+               
+            } 
             
+            else { 
+            
+               // This happens ALWAYS throughout the TRADE LIFETIME.
+               Orders::UpdateOrder(ChartID(), ORDERS_LIST, Symbol());
+               
+               if(IsNewCandle)
+                  Journal::TakeTradeNextSnapshot(Symbol(), ORDER_TICKET);
+            }
+         } 
+         
+         else {
+         
+            // This happens only ONCE -> when the TRADE is just CLOSED
+            if(ORDER_IS_ACTIVE) {
+               
+               ORDER_IS_ACTIVE = False;
+               Journal::TakeCloseSnapshot(Symbol(), ORDER_TICKET);
+               Management::DeleteLevels(ChartID());
+               //Analytics::WriteStats(ORDER_TICKET);
+            }
+         
+            // This happens ONLY when there is NO TRADE OPEN         
             if(IsNewCandle)
-               Journal::TakeTradeNextSnapshot(LTF_CHART_ID, HTF_CHART_ID);
+              Journal::TakeMarketSnapshot(Symbol());
          }
-         
-      } else {
-      
-         // This happens only ONCE -> when the TRADE is just CLOSED
-         if(ORDER_IS_ACTIVE) {
-            
-            ORDER_IS_ACTIVE = False;
-            Journal::TakeCloseSnapshot(LTF_CHART_ID, HTF_CHART_ID);
-            Management::DeleteLevels(ChartID());
-            //Analytics::WriteStats(ORDER_TICKET);
-      }
-      
-      // This happens ONLY when there is NO TRADE OPEN         
-         if(IsNewCandle)
-           Journal::TakeMarketSnapshot(LTF_CHART_ID, HTF_CHART_ID);
       }
   }
   
